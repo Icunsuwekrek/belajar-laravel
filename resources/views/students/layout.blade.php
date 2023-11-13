@@ -8,6 +8,7 @@
    
 <div class="container">
     @yield('content')
+    @yield('view')
 </div>
    
 </body>

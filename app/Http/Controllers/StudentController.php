@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\student;
+use Illuminate\Support\Facades\File;
 use Doctrine\DBAL\Types\Type;
 use Illuminate\Http\Request;
 use PhpParser\Builder\Function_;
@@ -27,12 +28,12 @@ class StudentController extends Controller
     {
         $newName = '';
 
-        if($request->file('photo')){
-        // $input = $request->all();
-        $extension = $request->file('photo')->getClientOriginalExtension();
-        $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
-        $request->file('photo')->storeAs('photo', $newName);
-    }
+        if ($request->file('photo')) {
+            // $input = $request->all();
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $newName = $request->name . '-' . now()->timestamp . '.' . $extension;
+            $request->file('photo')->storeAs('photo', $newName);
+        }
         $request['image'] = $newName;
         $student = student::create($request->all());
         return redirect('student')->with('flash_message', 'Student Addedd!');
@@ -49,15 +50,28 @@ class StudentController extends Controller
         $student = student::find($id);
         return view('students.edit')->with('student', $student);
     }
-    // public function showedit($id)
-    // {
-    //     return view('students.show');
+    // public function showedit(){
+    //     return view('students.edit');
     // }
     public function update(Request $request, $id)
     {
         $student = student::find($id);
         $input = $request->all();
-        $student->update($input);
+      
+
+        if ($request->image) {
+            $oldImage = $student->image;
+
+            $ext = $request->image->getClientOriginalExtension();
+            $newFileName = time() . '.' . $ext;
+            $request->image->move(public_path() . '/storage/photo', $newFileName);
+
+            $student->image = $newFileName;
+            $student->save();
+
+            File::delete(public_path().'/storage/photo'.$oldImage);
+        }
+          $student->update($input);
         return redirect('student')->with('flash_message', 'student Updated!');
     }
     public function destroy($id)
