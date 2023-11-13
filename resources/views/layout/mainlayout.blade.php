@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg bg-primary navbar-dark"  style="--bs-bg-opacity: .80;" >
+    <nav class="navbar navbar-expand-lg bg-black navbar-dark"  style="--bs-bg-opacity: .80;" >
         <div class="container-fluid" >
           <a class="navbar-brand fs-4 fw-bold">Navbar</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,8 @@
       <div class="container ">
       @yield('content')
     </div>
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">

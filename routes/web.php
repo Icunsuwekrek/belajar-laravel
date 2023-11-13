@@ -21,10 +21,13 @@ Route::post('/login', [AuthController::class, 'authentication'])->middleware('gu
 Route::get('/logout', [AuthController::class,  'logout'])->middleware('auth');
 Route::get('/', function () {
     return view('home', [
-        'nama' => 'Ichsan Sani',
-        'buah' => ['Klengkeng', 'Semangka', 'Alpukat']
+        'nama' => 'Favian',
+        'buah' => ['Tuban', 'Laki Laki', '12 November 2005','TSM30','R','S']
+        
     ]);
-})->middleware('auth');
+});
+// Route::get('/student', [StudentController::class,'index']);
+// Route::get('/student/create', [StudentController::class,'create'])->middleware('auth');
+// Route::get('/student/show',[StudentController::class,'show']);
 
 Route::resource('/student', StudentController::class)->middleware('auth');
-

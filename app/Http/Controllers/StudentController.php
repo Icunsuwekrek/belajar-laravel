@@ -49,6 +49,10 @@ class StudentController extends Controller
         $student = student::find($id);
         return view('students.edit')->with('student', $student);
     }
+    // public function showedit($id)
+    // {
+    //     return view('students.show');
+    // }
     public function update(Request $request, $id)
     {
         $student = student::find($id);
