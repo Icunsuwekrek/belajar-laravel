@@ -35,7 +35,7 @@
                 <button class="btn btn-primary form-control">Login</button>
             </div>
         </form>
-
+        <p class="text-center mt-3">Apakah Anda Sudah Punya AKun? <a href="/login/register">Register</a></p>
         </div>
     </div>
 

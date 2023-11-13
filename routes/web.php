@@ -18,13 +18,24 @@ use App\Http\Controllers\StudentController;
 */
 Route::get('/login', [AuthController::class, 'login']) ->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authentication'])->middleware('guest');
+Route::post('/login/create', [AuthController::class, 'create']);
+Route::get('/login/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class,  'logout'])->middleware('auth');
 Route::get('/', function () {
     return view('home', [
         'nama' => 'Ichsan Sani',
         'buah' => ['Klengkeng', 'Semangka', 'Alpukat']
     ]);
-})->middleware('auth');
+});
 
-Route::resource('/student', StudentController::class)->middleware('auth');
+Route::get('/student', [StudentController::class, 'index']);
+// Route::resource('/student', [StudentController::class, 'craete', 'update', 'destroy', 'show'])->middleware('auth');   mencoba kalo function yang dipanggil itu ditentukan
+Route::get('/student-add',[StudentController::class,'create'])->middleware('auth');
+Route::post('/student',[StudentController::class,'store'])->middleware('auth');
+Route::get('/student/{id}',[StudentController::class,'show'])->middleware('auth');
+// Route::get('/student/{id}/edit',[StudentController::class,'showedit']);
+Route::get('/student-edit/{id}',[StudentController::class,'edit'])->middleware('auth');
+Route::put('/student/{id}',[StudentController::class,'update'])->middleware('auth');
+Route::delete('/student/{id}',[StudentController::class,'destroy'])->middleware('auth');
 
+    
