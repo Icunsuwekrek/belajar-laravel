@@ -3,7 +3,7 @@
     @section('title', 'Home')
 
     @section('content')
-    
+
         <h1 class="text-center font-serif	font-family: ui-serif;">Ini Halaman Home</h1>
         <h2 class="text-center">
             Selamat Datang, {{ $nama }}

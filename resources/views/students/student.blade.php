@@ -11,7 +11,7 @@
                         <h2>Laravel 9 CRUD (Create, Read, Update and Delete)</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/student-add') }}" class="btn btn-success btn-sm" title="Add New Student">
+                        <a href="{{ url('/student/create') }}" class="btn btn-success btn-sm" title="Add New Student">
                             Add New
                         </a>
                         <br />
@@ -40,7 +40,7 @@
                                                 <a href="{{ url('/student/' . $item->id) }}" title="View Student"><button
                                                         class="btn btn-info btn-sm"><i class="fa fa-eye"
                                                             aria-hidden="true"></i> View</button></a>
-                                                <a href="{{ url('/student-edit/' . $item->id ) }}"
+                                                <a href="{{ url('/student/' . $item->id . '/edit') }}"
                                                     title="Edit Student"><button class="btn btn-primary btn-sm"><i
                                                             class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         Edit</button></a>

@@ -32,7 +32,14 @@
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
+                @auth
                 <a class="nav-link" href="/logout" >LogOut</a>
+                @endauth
+                @guest
+                <a class="nav-link" href="/login">Login</a>
+                @endguest
+                
+               
               </li>
             </ul>
           </div>
