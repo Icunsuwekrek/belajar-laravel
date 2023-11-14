@@ -27,7 +27,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $newName = '';
-
+        $validate = $request->validate([
+            'name'=>'required',
+            'gender'=>'in:L,P',
+            'NIS' => 'required|max:10'
+        ]);
         if ($request->file('photo')) {
             // $input = $request->all();
             $extension = $request->file('photo')->getClientOriginalExtension();
@@ -56,27 +60,39 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = student::find($id);
-        $input = $request->all();
-      
+        // $input = $request->all();
+        $validate = $request->validate([
+            'name'=>'required',
+            'gender'=>'in:L,P',
+            'NIS' => 'required|max:10'
+        ]);
 
-        if ($request->image) {
+        if ($request->file('image')->isValid()) {
             $oldImage = $student->image;
 
             $ext = $request->image->getClientOriginalExtension();
             $newFileName = time() . '.' . $ext;
-            $request->image->move(public_path() . '/storage/photo', $newFileName);
+            $upload = $request->image->move(public_path() . '/storage/photo', $newFileName);
 
-            $student->image = $newFileName;
-            $student->save();
+            // $student->image = $nsewFileName;
+            // $student->save();
 
-            File::delete(public_path().'/storage/photo'.$oldImage);
+            if ($upload) {
+                $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
+                $student->update($request->except('image') + ['image' => $newFileName]);
+            }
         }
-          $student->update($input);
+
         return redirect('student')->with('flash_message', 'student Updated!');
     }
     public function destroy($id)
-    {
-        student::destroy($id);
+    {   $student = student::find($id);
+        $oldImage = $student->image;
+        $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
+        if ($delete) {
+            student::destroy($id);
+        }
+      
         return redirect('student')->with('flash_message', 'Student deleted!');
     }
 }
