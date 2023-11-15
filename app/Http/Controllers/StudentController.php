@@ -16,7 +16,7 @@ class StudentController extends Controller
         // eloquent orm (rekom)
         // query builder
         // raw querry
-        $student = student::all();
+        $student = student::orderBy('created_at', 'desc')->get();
         return view('students.student')->with('student', $student);
     }
 
@@ -30,7 +30,8 @@ class StudentController extends Controller
         $validate = $request->validate([
             'name'=>'required',
             'gender'=>'in:L,P',
-            'NIS' => 'required|max:10'
+            'NIS' => 'required|max:10',
+            'image' =>'mimes: png,jpeg,jpg'
         ]);
         if ($request->file('photo')) {
             // $input = $request->all();
@@ -60,14 +61,19 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = student::find($id);
+        $tambahan = [];
         // $input = $request->all();
         $validate = $request->validate([
             'name'=>'required',
-            'gender'=>'in:L,P',
-            'NIS' => 'required|max:10'
+            'gender'=>'required|in:L,P',
+            'NIS' => 'required|integer|max_digits:10',
+            'image' =>'mimes: png,jpeg,jpg'
         ]);
+        // $message = [
+        //     'name' => ''
+        // ]
 
-        if ($request->file('image')->isValid()) {
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $oldImage = $student->image;
 
             $ext = $request->image->getClientOriginalExtension();
@@ -79,10 +85,11 @@ class StudentController extends Controller
 
             if ($upload) {
                 $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
-                $student->update($request->except('image') + ['image' => $newFileName]);
+                $tambahan = ['image' => $newFileName];
+               
             }
         }
-
+        $student->update($request->except('image') + $tambahan );
         return redirect('student')->with('flash_message', 'student Updated!');
     }
     public function destroy($id)
@@ -96,3 +103,9 @@ class StudentController extends Controller
         return redirect('student')->with('flash_message', 'Student deleted!');
     }
 }
+
+
+
+
+
+

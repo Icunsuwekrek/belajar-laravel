@@ -12,22 +12,38 @@
                 @method('PUT')
                 <input type="hidden" name="id" id="id" value="{{ $student->id }}" />
                 <label>Name</label></br>
-                <input type="text" name="name" id="name" value="{{ $student->name }}" class="form-control"></br>
+                <input type="text" name="name" id="name" value="{{ $student->name }}"
+                    class="form-control @error('name') is-invalid @enderror" autofocus></br>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 <label>Gender</label></br>
                 <input type="text" name="gender" id="address" value="{{ $student->gender }}"
-                    class="form-control"></br>
-                <label>NIS</label></br>
-                <input type="text" name="NIS" id="mobile" value="{{ $student->NIS }}" class="form-control"></br>
-                <div class="mb-3">
+                    class="form-control @error('gender') is-invalid @enderror" autofocus></br>
+                @error('gender')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <label for="NIS">NIS</label></br>
+                <input type="text" name="NIS" id="NIS" value="{{ $student->NIS }}"
+                    class="form-control @error('NIS') is-invalid @enderror" autofocus></br>
+                @error('NIS ')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <div class="mb-3 mt-4">
                     <div class="mb-3">
-                        <label for="" class="form-label"></label>
-                        <input type="file" name="image" id="image">
+                        <label for="image"></label>
+                        <input type="file" name="image" id="image"
+                            class="form -control @error('image') is-invalid @enderror">
 
+                        @error('image ')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <div class="pt-3">
                             @if ($student->image != '' && file_exists(public_path() . '/storage/photo' . $student->image))
                                 <img src="{{ url('storage/photo' . $student->image) }}">
                             @endif
                         </div>
+
                     </div>
                     <div class="form-group">
                         <img src="{{ asset('storage/photo/' . $student->image) }}" width="200px">
