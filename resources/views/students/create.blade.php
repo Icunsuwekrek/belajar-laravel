@@ -5,7 +5,9 @@
     <div class="card" style="margin:20px;">
         <div class="card-header">Create New Students</div>
         <div class="card-body">
-
+            @foreach ($errors->all() as $message)
+                {{ $message }}
+            @endforeach
             <form action="{{ url('student') }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 <label for="name">Name</label></br>
@@ -15,10 +17,10 @@
                 <label>NIS</label></br>
                 <input type="text" name="NIS" id="NIS" class="form-control"></br>
                 <div class="mb3">
-                  <label for="photo">Photo</label>
+                    <label for="photo">Photo</label>
                     <div class="input-group mb-3">
                         <input type="file" class="form-control" name="photo" id="photo"
-                            aria-describedby="inputGroupFileAddon04" >
+                            aria-describedby="inputGroupFileAddon04">
                     </div>
                 </div>
                 <input type="submit" value="Save" class="btn btn-success"></br>

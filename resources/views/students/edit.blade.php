@@ -4,8 +4,10 @@
     <div class="card" style="margin:20px;">
         <div class="card-header">Edit Student</div>
         <div class="card-body">
-
-            <form action="/student/{{$student->id}}" method="post">
+            @foreach ($errors->all() as $message)
+                {{ $message }}
+            @endforeach
+            <form action="/student/{{ $student->id }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 @method('PUT')
                 <input type="hidden" name="id" id="id" value="{{ $student->id }}" />
@@ -19,7 +21,7 @@
                 <div class="mb-3">
                     <div class="mb-3">
                         <label for="" class="form-label"></label>
-                        <input type="file" name="photo" id="photo">
+                        <input type="file" name="image" id="image">
 
                         <div class="pt-3">
                             @if ($student->image != '' && file_exists(public_path() . '/storage/photo' . $student->image))

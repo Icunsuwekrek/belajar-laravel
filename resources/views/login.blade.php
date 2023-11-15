@@ -27,15 +27,16 @@ height: 100%;
 </style>
 
 <body>
-  <header class="text-gray-600 body-font">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col mb-3 md:flex-row items-center">
-      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+  
+  {{-- <header class="text-gray-600 body-font"> --}}
+    <header div class="container mx-auto flex flex-wrap p-5 flex-col mb-3 md:flex-row items-center">
+      {{-- <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <img src="img/Logomark.svg" alt="">
         <span class="ml-3 text-xl font-bold">Aksacademy</span>
       </a>
       <nav class=" md:ml-4 md:py-1 md:pl-4 hidden lg:flex  flex-wrap items-center text-base justify-center">
-        <a href="/slicing/home.html" class="mr-10 font-bold text-blue-700 hover:text-blue-700">Home</a>
-        <a href="/slicing/home.html" class="mr-10 hover:text-gray-900">Events</a>
+        <a href="/slicing/home.html" class="mr-10 font-bold text-blue-700 hover:text-blue-700">Homeee</a>
+        <a href="/slicing/home.html" class="mr-10 hover:text-gray-900">Eventsss</a>
         <a href="/slicing/home.html" class="mr-10 hover:text-gray-900">Pricing</a>
         <a href="/slicing/home.html" class="mr-10 hover:text-gray-900">Contact</a>
       </nav>
@@ -50,7 +51,7 @@ height: 100%;
           </a>
         <!-- </div> -->
       <!-- </button> -->
-    </div>
+    </div> --}}
             <div class="login-box">
             <form method="POST" action="">  
                 @csrf                 
@@ -96,7 +97,7 @@ height: 100%;
          <div class="flex items-center justify-center px-6 pt-12 text-sm">
           <!-- Copyright -->
           {{-- <div class="text-white mb-3 mb-md-0"> --}}
-            <span class="text-gray-500 text-sm text-center sm:text-left"> Copyright © 2023. All rights reserved. </span>
+            <span class="text-gray-500 text-sm text-center sm:text-left"> Copyright © 2023. All rights reserved. ^-^ </span>
           </div>
         </div>
       </section>
