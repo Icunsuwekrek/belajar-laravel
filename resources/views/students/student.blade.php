@@ -68,6 +68,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="my-5">
+
+                            {{$student->links()}}
+                        </div>
 
                         </div>
 

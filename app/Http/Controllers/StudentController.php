@@ -15,7 +15,7 @@ class StudentController extends Controller
         $keyword = $request->keyword;
         
         $student = student::where('name', 'LIKE', '%'.$keyword.'%')
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('created_at', 'desc')->paginate(5);
         return view('students.student')->with('student', $student);
     }
 
