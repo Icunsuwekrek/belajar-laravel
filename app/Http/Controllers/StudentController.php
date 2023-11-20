@@ -64,9 +64,9 @@ class StudentController extends Controller
         $tambahan = [];
         // $input = $request->all();
         $validate = $request->validate([
-            'name'=>'required',
+            'name'  =>'required',
             'gender'=>'required|in:L,P',
-            'NIS' => 'required|integer|max_digits:10',
+            'NIS'   =>'required|integer|max_digits:10',
             'image' =>'mimes: png,jpeg,jpg'
         ]);
         // $message = [
