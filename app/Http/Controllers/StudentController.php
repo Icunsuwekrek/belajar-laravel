@@ -28,10 +28,10 @@ class StudentController extends Controller
     {
         $newName = '';
         $validate = $request->validate([
-            'name'=>'required',
-            'gender'=>'in:L,P',
-            'NIS' => 'required|max:10',
-            'image' =>'mimes: png,jpeg,jpg'
+            'name' => 'required',
+            'gender' => 'in:L,P',
+            'NIS' => 'required|integer|min_digits:6|max_digits:10',
+            'image' => 'mimes: png,jpeg,jpg'
         ]);
         if ($request->file('photo')) {
             // $input = $request->all();
@@ -64,10 +64,10 @@ class StudentController extends Controller
         $tambahan = [];
         // $input = $request->all();
         $validate = $request->validate([
-            'name'=>'required',
-            'gender'=>'required|in:L,P',
-            'NIS' => 'required|integer|max_digits:10',
-            'image' =>'mimes: png,jpeg,jpg'
+            'name' => 'required',
+            'gender' => 'required|in:L,P',
+            'NIS' => 'required|integer|min_digits:6|max_digits:10',
+            'image' => 'mimes: png,jpeg,jpg'
         ]);
         // $message = [
         //     'name' => ''
@@ -86,26 +86,20 @@ class StudentController extends Controller
             if ($upload) {
                 $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
                 $tambahan = ['image' => $newFileName];
-               
             }
         }
-        $student->update($request->except('image') + $tambahan );
+        $student->update($request->except('image') + $tambahan);
         return redirect('student')->with('flash_message', 'student Updated!');
     }
     public function destroy($id)
-    {   $student = student::find($id);
+    {
+        $student = student::find($id);
         $oldImage = $student->image;
         $delete = File::delete(public_path() . '/storage/photo/' . $oldImage);
         if ($delete) {
             student::destroy($id);
         }
-      
+
         return redirect('student')->with('flash_message', 'Student deleted!');
     }
 }
-
-
-
-
-
-

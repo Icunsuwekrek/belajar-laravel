@@ -4,9 +4,9 @@
     <div class="card" style="margin:20px;">
         <div class="card-header">Edit Student</div>
         <div class="card-body">
-            @foreach ($errors->all() as $message)
+            {{-- @foreach ($errors->all() as $message)
                 {{ $message }}
-            @endforeach
+            @endforeach --}}
             <form action="/student/{{ $student->id }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 @method('PUT')
@@ -18,17 +18,19 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
                 <label>Gender</label></br>
-                <input type="text" name="gender" id="address" value="{{ $student->gender }}"
+                <input type="text" name="gender" id="gender" value="{{ $student->gender }}"
                     class="form-control @error('gender') is-invalid @enderror" autofocus></br>
                 @error('gender')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-                <label for="NIS">NIS</label></br>
-                <input type="text" name="NIS" id="NIS" value="{{ $student->NIS }}"
-                    class="form-control @error('NIS') is-invalid @enderror" autofocus></br>
-                @error('NIS ')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+          <div class="mb-3">
+            <label for="NIS">NIS</label></br>
+            <input type="text" name="NIS" id="NIS" value="{{ $student->NIS }}"
+                class="form-control @error('NIS') is-invalid @enderror" autofocus></br>
+            @error('NIS ')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
                 <div class="mb-3 mt-4">
                     <div class="mb-3">
                         <label for="image"></label>

@@ -21,6 +21,8 @@ Route::post('/login', [AuthController::class, 'authentication'])->middleware('gu
 Route::post('/login/create', [AuthController::class, 'create']);
 Route::get('/login/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class,  'logout'])->middleware('auth');
+// Route::get('login/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+// Route::get('login/google/callback',[AuthController::class, 'handleGoogleCallback']);
 Route::get('/', function () {
     return view('home', [
         'nama' => 'Favian',

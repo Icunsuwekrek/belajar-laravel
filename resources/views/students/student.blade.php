@@ -14,6 +14,15 @@
                         <a href="{{ url('/student-add') }}" class="btn btn-success btn-sm" title="Add New Student">
                             Add New
                         </a>
+                        <div class="mt-4 col-12 col-sm-8 col-md-6">
+                            <form action="" method="get">
+                                <div class="input-group ">
+                                    <button class="input-group-text btn btn-primary">Search</button>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                        aria-describedby="addon-wrapping">
+                                </div>
+                            </form>
+                        </div>
                         <br />
                         <br />
                         <div class="table-responsive table-dark">
@@ -40,7 +49,7 @@
                                                 <a href="{{ url('/student/' . $item->id) }}" title="View Student"><button
                                                         class="btn btn-info btn-sm"><i class="fa fa-eye"
                                                             aria-hidden="true"></i> View</button></a>
-                                                <a href="{{ url('/student-edit/' . $item->id ) }}"
+                                                <a href="{{ url('/student-edit/' . $item->id) }}"
                                                     title="Edit Student"><button class="btn btn-primary btn-sm"><i
                                                             class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         Edit</button></a>

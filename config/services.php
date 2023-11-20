@@ -20,6 +20,12 @@ return [
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
+    'google' => [
+        'client.id' => env('GOOGLE_CLIENT_ID'),
+        'client.secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URL')
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

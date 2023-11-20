@@ -38,14 +38,14 @@
                 @guest
                 <a class="nav-link" href="/login">Login</a>    
                 @endguest
-           
+           {{-- <a href="{{route('login.google')}}">Login With Google</a> --}}
              
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <div class="container ">
+      <div class="container ">  
       @yield('content')
     </div>
 
