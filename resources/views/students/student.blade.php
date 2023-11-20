@@ -18,7 +18,7 @@
                             <form action="" method="get">
                                 <div class="input-group ">
                                     <button class="input-group-text btn btn-primary">Search</button>
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                    <input type="text" class="form-control" name="keyword" placeholder="Nama Siswa" aria-label="Username"
                                         aria-describedby="addon-wrapping">
                                 </div>
                             </form>

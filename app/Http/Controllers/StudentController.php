@@ -10,13 +10,12 @@ use PhpParser\Builder\Function_;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $nama = "Ichsan";
-        // eloquent orm (rekom)
-        // query builder
-        // raw querry
-        $student = student::orderBy('created_at', 'desc')->get();
+        $keyword = $request->keyword;
+        
+        $student = student::where('name', 'LIKE', '%'.$keyword.'%')
+        ->orderBy('created_at', 'desc')->get();
         return view('students.student')->with('student', $student);
     }
 
