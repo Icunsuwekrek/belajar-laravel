@@ -13,10 +13,11 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->keyword;
-        
-        $student = student::where('name', 'LIKE', '%'.$keyword.'%')
-        ->orderBy('created_at', 'desc')->paginate(5);
-        return view('students.student')->with('student', $student);
+
+        $student = student::where('name', 'LIKE', '%' . $keyword . '%')
+            ->orwhere('gender', $keyword)
+            ->orderBy('created_at', 'desc')->paginate(5);
+        return view('students.student')->with('students', $student);
     }
 
     public function create()

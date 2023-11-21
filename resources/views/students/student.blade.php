@@ -18,7 +18,7 @@
                             <form action="" method="get">
                                 <div class="input-group ">
                                     <button class="input-group-text btn btn-primary">Search</button>
-                                    <input type="text" class="form-control" name="keyword" placeholder="Nama Siswa" aria-label="Username"
+                                    <input type="text" class="form-control" name="keyword"  aria-label="Username"
                                         aria-describedby="addon-wrapping">
                                 </div>
                             </form>
@@ -38,7 +38,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($student as $item)
+                                    @foreach ($students as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
@@ -70,7 +70,7 @@
                             </table>
                             <div class="my-5">
 
-                            {{$student->links()}}
+                            {{$students->links()}}
                         </div>
 
                         </div>
