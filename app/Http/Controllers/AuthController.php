@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
+use App\Http\Controllers\Controller;
+use Laravel\Socialite\Facades\Socialite;
+
 
 class AuthController extends Controller
 {
@@ -54,10 +57,10 @@ return redirect('/login');
     ], [
         'name.required' => 'name wajib diisi',
         'email.required' => 'Email wajib diisi',
-        'email.email' => 'silakan masukkan email yg valid',
-        'email.unique' => 'silakan pilih email yg lain',
+        'email.email' => 'Silakan masukkan email yg valid',
+        'email.unique' => 'Silakan pilih email yg lain',
         'password.required' => 'Password wajib diisi',
-        'password.mon' => 'minimum 6 karakter'
+        'password.mon' => 'Mnimum 6 karakter'
     ]);
 
     $data = [
@@ -80,3 +83,16 @@ return redirect('/login');
 }
 
 }
+// class Authorization extends Controller
+// {
+//     public function redirectToGoogle()
+//     {
+//         return Socialite::driver('google')->redirect();
+//     }
+//     public function handleGoogleCallback()
+//     {
+//         $user = Socialite::driver('google')->user();
+
+//         return redirect('/');
+//     }
+// }
