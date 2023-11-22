@@ -19,69 +19,69 @@ class AuthController extends Controller
         return view('login');
     }
 
-   public function authentication(Request $request)
-   {
-    $credentials= $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ]);
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+    public function authentication(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended('/');
+            return redirect()->intended('/');
+        }
+        Session::flash('status', 'failed');
+        Session::flash('message', 'login salah');
+        return redirect('/login');
     }
-Session::flash('status', 'failed');
-Session::flash('message', 'login salah');
-return redirect('/login');
-   }
-   public function logout(Request $request)
-   {
-    Auth::logout();
-    $request->session()->invalidate();
- 
-    $request->session()->regenerateToken();
- 
-    return redirect('/');
-   }
-   function register(){
-    return view ('register');
-   }
-   function create(Request $request) {
-    Session::flash('name', $request->name);
-    Session::flash('email', $request->email);
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
 
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6'
-    ], [
-        'name.required' => 'name wajib diisi',
-        'email.required' => 'Email wajib diisi',
-        'email.email' => 'silakan masukkan email yg valid',
-        'email.unique' => 'silakan pilih email yg lain',
-        'password.required' => 'Password wajib diisi',
-        'password.mon' => 'minimum 6 karakter'
-    ]);
+        $request->session()->regenerateToken();
 
-    $data = [
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password)
-    ];
-    User::create($data);
+        return redirect('/');
+    }
+    public function register()
+    {
+        return view('register');
+    }
+    public function create(Request $request)
+    {
+        Session::flash('name', $request->name);
+        Session::flash('email', $request->email);
 
-    $infologin = [
-        'email' => $request->email,
-        'password' => $request->password
-    ];
-     if (Auth::attempt($infologin)) {
-        return redirect('')->with('success', 'Berhasil login');
-    } else {
-        return redirect('login')->withErrors('Username dan password yang dimasukkan tidak sesuai');
-}
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6'
+        ], [
+            'name.required' => 'name wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Silakan masukkan email yg valid',
+            'email.unique' => 'Silakan pilih email yg lain',
+            'password.required' => 'Password wajib diisi',
+            'password.mon' => 'Mnimum 6 karakter'
+        ]);
 
-}
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ];
+        User::create($data);
 
+        $infologin = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+        if (Auth::attempt($infologin)) {
+            return redirect('')->with('success', 'Berhasil login');
+        } else {
+            return redirect('login')->withErrors('Username dan password yang dimasukkan tidak sesuai');
+        }
+    }
 }
 // class Authorization extends Controller
 // {

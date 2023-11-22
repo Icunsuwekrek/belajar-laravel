@@ -16,7 +16,7 @@ class StudentController extends Controller
 
         $student = student::where('name', 'LIKE', '%' . $keyword . '%')
             ->orwhere('gender', $keyword)
-            ->orderBy('created_at', 'desc')->paginate(5);
+            ->orderBy('created_at', 'desc')->paginate(4);
         return view('students.student')->with('students', $student);
     }
 
